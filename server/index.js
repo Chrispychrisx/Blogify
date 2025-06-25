@@ -44,9 +44,9 @@ const upload = multer({ storage });
 
 app.post(`/api/upload`, upload.single('file'), (req, res) => {
     if(!req.file){
-    return res.status(400).json({error: 'No file uploaded', path: req.file.path});
+    return res.status(400).json({ error: 'No file uploaded', path: req.file.path });
     }
-    return res.json({message: 'file was uploaded', path: req.file.path});
+    return res.json({ message: 'file was uploaded', path: req.file.path });
 });
 
 // HANDLE ERROR
