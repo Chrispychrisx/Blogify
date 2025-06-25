@@ -1,5 +1,3 @@
-
-
 import { useFormik } from "formik";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -31,16 +29,16 @@ const EditPostForm = () => {
     const fetcher = (...args) => fetch(...args, {headers: {'Authorization': `Bearer ${user.token}`}}).then((Response) => Response.json());
     const { data: allCategories, mutate, error, isLoading } = useSWR(`${URL}/categories`, fetcher);
 
-    const { data: post, mutate: post_mutate, error: post_error, isLoading: post_isLoading } = useSWR(`${URL}posts/${post_slug}`, fetcher);
+    const { data: post, mutate: post_mutate, error: post_error, isLoading: post_isLoading } = useSWR(`${URL}/posts/${post_slug}`, fetcher);
 
-    const { data: sing_post, mutate: s_post_mutate, error: s_post_error, isLoading: s_post_isLoading } = useSWR(`${URL}posts/single-post/${post_slug}`, fetcher);
+    const { data: sing_post, mutate: s_post_mutate, error: s_post_error, isLoading: s_post_isLoading } = useSWR(`${URL}/posts/single-post/${post_slug}`, fetcher);
 
 
     // console.log("POST : ", post?.data);
 
     const onSubmit = async(values, actions) => {
-        handleUpload();
-
+        // handleUpload();
+        //return console.log('vaues', values);
         try {
             const response = await fetch(`${URL}/posts/${post_slug}`, {
                 method: 'PUT', 
@@ -61,7 +59,7 @@ const EditPostForm = () => {
                 toast.error(res.message);
             }
         } catch (error) {
-            toast.error("Error occurred while updating post : ", error.message);
+            toast.error("Error occurred while updating post : ", error);
             console.log("Error occurred while updating post : ", error.message);
         }
     }

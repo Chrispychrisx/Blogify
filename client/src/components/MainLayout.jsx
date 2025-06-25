@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainLayout = ({ children }) => {
 
@@ -12,13 +12,13 @@ const MainLayout = ({ children }) => {
   const navigate = useNavigate();
   const userInfo = localStorage.getItem('user');
   const user = JSON.parse(userInfo);
-  const url = "http://localhost:3000/login";
+  // const url = "http://localhost:3000/login"
 
   useEffect(() => {
     if(user === undefined || user === '' || user === null){
       return navigate(`/login`); 
     }
-  }, [])
+  }, [user, navigate]);
 
   return (
     <main className="">

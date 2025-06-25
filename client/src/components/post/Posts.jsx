@@ -14,7 +14,7 @@ const Posts = ({ limit, results }) => {
   const fetcher = (...args) => fetch(...args, {headers: {'Authorization': `Bearer ${user.token}`}}).then((Response) => Response.json());
   const { data: posts, mutate, error, isLoading } = useSWR(`${URL}/posts?limit=${limit}`, fetcher);
   
-  // console.log("Post : ", posts);
+    //console.log("Post : ", posts);
 
 
 

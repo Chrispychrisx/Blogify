@@ -1,4 +1,4 @@
-import { FaCube, FaFileAlt } from 'react-icons/fa';
+import { FaCube } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useFormik } from 'formik';
 import { CategorySchema } from '../../schemas';
@@ -26,7 +26,7 @@ const CategoryForm = ( {mutate, user}) => {
                     if(res.success){
                         toast.success(res.message);
                         mutate();
-                        await new Promise((resolve) => setTimeout(resolve, 3000));
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
                         actions.resetForm()
                         return navigate(`/categories`);
                     }
