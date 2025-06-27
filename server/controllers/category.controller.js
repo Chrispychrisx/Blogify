@@ -27,28 +27,29 @@ export const getCategories = async(req, res) => {
 export const createCategory = async(req, res) => {
     const { name, description } = req.body;
     //validate with schema
-    const { error } = categorySchema.validate({ name, description});
-
-    if(!error) {
+    const { error } = categorySchema.validate({ name, description });
+    
+    if(error){
         return res.status(400).json({
             success: false, message: error.details[0].message
         });
     }
 
     try {
-        const categoryExit = await Category.findOne({name});
-    if(categoryExit){
-        res.status(400).json({
-            success: false, message: 'Category already exist'
+        const categoryExist = await Category.findOne({name});
+        if(categoryExist){
+            res.status(400).json({
+                success: false, message: 'Category already exist'
+            });
+        }
+
+        const category = new Category({ name, description });
+        await category.save();
+
+        res.status(201).json({
+            success: true, message: `${name} category created successfully`, 
+            data: category
         });
-    }
-
-    const category = new Category({ name, description });
-    await category.save();
-
-    res.status(201).json({
-        success:true, message: `${name} category created successfully`, data: category
-    });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }

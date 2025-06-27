@@ -46,29 +46,25 @@ export const getPosts = async(req, res) => {
 
 export const createPost = async(req, res) => {
     const { title, body, categories, photo, author } = req.body;
-
-
     const toSlug = (title) => {
         return title.toLowerCase().replace(/\s+/g, '-');
     }
     let slug = toSlug(title);
     let image = null;
-    if(photo?.length > 12){
-        image = photo.substring(12);
-    }
+    if(photo?.length > 12){  image = photo.substring(12); }
 
     //validate with schema
-        const { error } = postSchema.validate({ title, slug, body, categories, author});
+    const { error } = postSchema.validate({ title, slug, body, categories, author });
     
-        if(!error) {
-            return res.status(400).json({
-                success: false, message: error.details[0].message
-            });
-        }
-
+    if(error){
+        return res.status(400).json({
+            success: false, message: error.details[0].message
+        });
+    }
+    
     try {
         
-        const postExist = await Post.find({ title })
+        const postExist = await Post.find({ title });
         if(!postExist){
             return res.status(400).json({
                 success: false, message: "Post already exist"
@@ -83,9 +79,9 @@ export const createPost = async(req, res) => {
             success: true, message: "Post created successfully", post
         });
     } catch (error) {
-        return res.status(400).json({ 
+        return res.status(400).json({
             success: false, message: error.message
-         });    
+        });
     }
 }
 
