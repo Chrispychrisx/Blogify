@@ -12,7 +12,7 @@ export const loginSchema = yup.object().shape({
     password: yup.string().min(6, "Passwird require mininum of 6 characters").required("Password required")
 });
 
-export const CategorySchema = yup.object().shape({
+export const categorySchema = yup.object().shape({
     name: yup.string().min(5, "Mininum of 5 characters required").required("Name required" ),
     description: yup.string().min(15, "Mininum of 15 characters required").required("Description required")
 });

@@ -3,8 +3,8 @@ import { FaCheckCircle, FaCube, FaFileAlt, FaInfoCircle, FaTrashAlt } from 'reac
 import { useNavigate, useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import { useFormik } from 'formik';
-import { CategorySchema, categorySchema } from '../../schemas';
 import toast from 'react-hot-toast';
+import { categorySchema } from '../../schemas';
 
 const EditCategoryForm = () => {
 
@@ -76,7 +76,7 @@ const EditCategoryForm = () => {
         name: category?.data?.name,  
         description: category?.data?.description 
     },
-    validationSchema: CategorySchema,
+    validationSchema: categorySchema,
     onSubmit,
     })
     
