@@ -20,8 +20,9 @@ const CategoryForm = ( {mutate, user}) => {
                     'Content-Type': 'application/json', 
                     'Authorization': `Bearer ${user.token}` 
                 },
-                    body: JSON.stringify(values),
-            });
+                    body: JSON.stringify(values)
+            }); 
+
                 const res = await response.json();
                     if(res.success){
                         toast.success(res.message);
@@ -34,8 +35,8 @@ const CategoryForm = ( {mutate, user}) => {
                         toast.error(res.message);
                     }
                 } catch (error) {
-                    toast.error("Error occurred while creating categories : ", error.message);
-                    console.log("Error occurred while creating categories : ", error.message);
+                    toast.error(`Error occurred while creating categories: ${error.message}`);
+                    console.error("Error occurred while creating categories:", error);
                 }
         }
 
