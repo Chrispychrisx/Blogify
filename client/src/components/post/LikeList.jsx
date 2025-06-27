@@ -42,7 +42,7 @@ const LikeList = () => {
                 post={post}
                 className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
               />
-            ))
+            )) 
           )}
         </div>
       </div>

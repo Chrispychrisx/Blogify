@@ -35,8 +35,8 @@ const CategoryForm = ( {mutate, user}) => {
                         toast.error(res.message);
                     }
                 } catch (error) {
-                    toast.error(`Error occurred while creating categories: ${error.message}`);
-                    console.error("Error occurred while creating categories:", error);
+                    toast.error("Error occurred while creating categories : ", error.message);
+                    console.log("Error occurred while creating categories : ", error.message);
                 }
         }
 
